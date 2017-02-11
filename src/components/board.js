@@ -3,61 +3,47 @@ import Row from "./row";
 
 class Board extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicks: 0,
+      boardValues: [
+        ['-', '-', '-'],
+        ['-', '-', '-'],
+        ['-', '-', '-']
+      ]
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(boardIndex, rowIndex) {
+    // console.log(`box boardIndex ${boardIndex} rowIndex ${rowIndex} value ${value}`);
+    let newValue = 'X';
+    if (this.state.clicks % 2 === 0) {
+      newValue = '0';
+    }
+    const boardValues = this.state.boardValues;
+    boardValues[boardIndex][rowIndex] = newValue;
+    this.setState({
+      boardValues,
+      clicks: this.state.clicks + 1
+    });
+    // console.log(this.state);
+  }
+
   render() {
+    const boards = this.state.boardValues.map((rows, index) => {
+      return <Row rowValues={rows} boardIndex={index} key={index} onHandleClick={this.handleClick}/>
+    });
+
     return (
       <div>
-        <Row />
-        <Row />
-        <Row />
+        {boards}
       </div>
     )
+
   }
-  // constructor(options) {
-  //   super(options);
-  //   this.state = {
-  //     clicks: 0,
-  //     boardValues: [
-  //       ['-', '-', '-'],
-  //       ['-', '-', '-']
-  //       // ['-', '-', '-']
-  //     ]
-  //   };
-  //   this.onBoxClick = this.onBoxClick.bind(this);
-  // }
-  //
-  // onBoxClick(event) {
-  //   console.log('onBoxClick');
-  //   console.log(boardIndex);
-  //   console.log(rowIndex);
-  //   const newValue = this.state.boardValues[boardIndex][rowIndex] === 'X' ? '0' : 'a';
-  //
-  //   let boardValues = this.state.boardValues;
-  //   boardValues[boardIndex][rowIndex] = newValue;
-  //
-  //   console.log(boardValues);
-  //
-  //   this.setState({
-  //     boardValues,
-  //     clicks: this.state.clicks + 1
-  //   });
-  // }
-  //
-  // render() {
-  //   const rows = this.state.boardValues.map((row, index) => {
-  //     return (
-  //       <Row key={index}
-  //            rowValues={row}
-  //            boardIndex={index}
-  //            onBoardClick={() => this.onBoxClick} />
-  //     )
-  //   });
-  //
-  //   return (
-  //     <div>
-  //       {rows}
-  //     </div>
-  //   );
-  // }
+
 }
 
 export default Board;
