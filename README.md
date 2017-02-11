@@ -1,4 +1,4 @@
-This project is hosted [here](#https://reacttictactoe-89ecb.firebaseapp.com/)
+This project is hosted [here](https://reacttictactoe-89ecb.firebaseapp.com/)
 
 ---
 
