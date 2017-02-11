@@ -4,6 +4,6 @@ import "./index.css";
 import Board from "./components/board";
 
 ReactDOM.render(
-  <Board/>,
+  <Board />,
   document.getElementById('root')
 );
